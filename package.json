@@ -19,6 +19,7 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
+    "@babel/runtime-corejs2": "^7.6.3",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@typescript-eslint/parser": "^2.3.3",
     "babel-loader": "^8.0.6",
@@ -43,5 +44,8 @@
     "webpack": "^4.41.1",
     "webpack-cli": "^3.3.9",
     "yargs": "^14.2.0"
+  },
+  "dependencies": {
+    "hotkeys-js": "^3.7.2"
   }
 }
