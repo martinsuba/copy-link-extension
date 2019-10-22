@@ -12,6 +12,8 @@ const style = {
   height: '100px',
   background: 'transparent',
   zIndex: 999999999,
+  border: 0,
+  boxShadow: 'none',
 };
 
 function destroyAllIframes() {

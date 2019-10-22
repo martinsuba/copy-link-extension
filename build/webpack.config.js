@@ -78,15 +78,6 @@ const baseConfig = {
       babelLoader,
     ],
   },
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: './static',
-        to: './',
-        toType: 'dir',
-      },
-    ]),
-  ],
   bail: true,
 };
 
@@ -113,6 +104,15 @@ const backgroundOverride = {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
   },
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: './static',
+        to: './',
+        toType: 'dir',
+      },
+    ]),
+  ],
 };
 
 const iframesOverride = {
@@ -121,7 +121,6 @@ const iframesOverride = {
     path: path.resolve(__dirname, '../dist/iframes/'),
   },
   plugins: [
-    ...baseConfig.plugins,
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
