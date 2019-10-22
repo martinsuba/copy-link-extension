@@ -18,6 +18,8 @@
     "tabs",
     "storage",
     "activeTab",
+    "clipboardWrite",
+    "clipboard",
     "*://*/*"
   ],
   "content_scripts": [
@@ -31,6 +33,10 @@
       ],
       "all_frames": false
     }
+  ],
+  "web_accessible_resources": [
+    "iframes/success/index.html",
+    "iframes/failure/index.html"
   ],
   "icons": {
     "32": "icons/icon32.png",

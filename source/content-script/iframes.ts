@@ -1,0 +1,48 @@
+import IframeManager from 'iframe-manager';
+
+import { DESTROY_IFRAME_TIMEOUT } from './constants';
+
+const iframeManager = new IframeManager();
+
+const style = {
+  position: 'fixed',
+  top: '10px',
+  right: '10px',
+  width: '115px',
+  height: '100px',
+  background: 'transparent',
+  zIndex: 999999999,
+};
+
+function destroyAllIframes() {
+  const { iframes } = iframeManager;
+  for (const iframe of iframes) {
+    iframe.destroy();
+  }
+}
+
+export function injectSuccessIframe() {
+  destroyAllIframes();
+  const successIframe = iframeManager.inject({
+    source: chrome.runtime.getURL('iframes/success/index.html?msg=Copied'),
+    style,
+  });
+
+  const destroyTimeout = setTimeout(() => {
+    clearTimeout(destroyTimeout);
+    successIframe.destroy();
+  }, DESTROY_IFRAME_TIMEOUT);
+}
+
+export function injectFailureIframe() {
+  destroyAllIframes();
+  const failureIframe = iframeManager.inject({
+    source: chrome.runtime.getURL('iframes/failure/index.html?msg=Failed'),
+    style,
+  });
+
+  const destroyTimeout = setTimeout(() => {
+    clearTimeout(destroyTimeout);
+    failureIframe.destroy();
+  }, DESTROY_IFRAME_TIMEOUT);
+}

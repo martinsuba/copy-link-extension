@@ -116,7 +116,7 @@ const backgroundOverride = {
 };
 
 const iframesOverride = {
-  entry: iframes.reduce((obj, iframe) => ({ ...obj, [`${iframe}/index`]: `./content-script/iframes/${iframe}/index.js` }), {}),
+  entry: iframes.reduce((obj, iframe) => ({ ...obj, [`${iframe}/index`]: `./content-script/iframes/${iframe}/index.ts` }), {}),
   output: {
     path: path.resolve(__dirname, '../dist/iframes/'),
   },

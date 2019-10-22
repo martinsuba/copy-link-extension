@@ -1,19 +1,16 @@
 import { saveTextToClipboard } from './clipboard';
 
-export function copyWebsiteURL(): false {
+export async function copyWebsiteURL(): Promise<void> {
   const currentURL = window.location.href;
-  saveTextToClipboard(currentURL);
-  return false;
+  await saveTextToClipboard(currentURL);
 }
 
-export function copyImageURL(image: HTMLImageElement): false {
+export async function copyImageURL(image: HTMLImageElement): Promise<void> {
   const { src } = image;
-  saveTextToClipboard(src);
-  return false;
+  await saveTextToClipboard(src);
 }
 
-export function copyLinkURL(link: HTMLAnchorElement): false {
+export async function copyLinkURL(link: HTMLAnchorElement): Promise<void> {
   const { href } = link;
-  saveTextToClipboard(href);
-  return false;
+  await saveTextToClipboard(href);
 }
