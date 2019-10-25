@@ -1,15 +1,16 @@
 export default class HoveredElement {
-  selector: string;
-  hovered: Element;
+  hovered: Node;
 
   constructor(selector: string) {
-    this.selector = selector;
     this.hovered = null;
-    this.addListeners();
+    this.addListeners(this.getElements(selector));
   }
 
-  addListeners(): void {
-    const elements = document.querySelectorAll(this.selector);
+  private getElements(selector: string): NodeList {
+    return document.querySelectorAll(selector);
+  }
+
+  addListeners(elements: NodeList): void {
     elements.forEach((element) => element.addEventListener('mouseenter', () => {
       this.hovered = element;
     }));

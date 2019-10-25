@@ -1,12 +1,27 @@
 import hotkeys from 'hotkeys-js';
 
 import { copyWebsiteURL, copyImageURL, copyLinkURL } from './copy-functions';
-import { SHORTCUTS } from './constants';
+import { SHORTCUTS, IMAGE_SELECTOR, LINK_SELECTOR } from './constants';
 import HoveredElement from './HoveredElement';
 import { injectSuccessIframe, injectFailureIframe } from './iframes';
+import Observer from './Observer';
 
-const image = new HoveredElement('img');
-const link = new HoveredElement('a');
+const image = new HoveredElement(IMAGE_SELECTOR);
+const link = new HoveredElement(LINK_SELECTOR);
+
+const observerConfig = [
+  {
+    selector: IMAGE_SELECTOR,
+    callback: image.addListeners.bind(image),
+  },
+  {
+    selector: LINK_SELECTOR,
+    callback: link.addListeners.bind(link),
+  },
+];
+
+// eslint-disable-next-line no-unused-vars
+const observer = new Observer(observerConfig);
 
 // copy current website url
 hotkeys(SHORTCUTS.COPY_WEBSITE_URL, (e) => {

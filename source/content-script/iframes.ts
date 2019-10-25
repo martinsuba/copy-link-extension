@@ -16,14 +16,14 @@ const style = {
   boxShadow: 'none',
 };
 
-function destroyAllIframes() {
+function destroyAllIframes(): void {
   const { iframes } = iframeManager;
   for (const iframe of iframes) {
     iframe.destroy();
   }
 }
 
-export function injectSuccessIframe() {
+export function injectSuccessIframe(): void {
   destroyAllIframes();
   const successIframe = iframeManager.inject({
     source: chrome.runtime.getURL('iframes/success/index.html?msg=Copied'),
@@ -36,7 +36,7 @@ export function injectSuccessIframe() {
   }, DESTROY_IFRAME_TIMEOUT);
 }
 
-export function injectFailureIframe() {
+export function injectFailureIframe(): void {
   destroyAllIframes();
   const failureIframe = iframeManager.inject({
     source: chrome.runtime.getURL('iframes/failure/index.html?msg=Failed'),

@@ -5,3 +5,5 @@ export const SHORTCUTS = {
 };
 
 export const DESTROY_IFRAME_TIMEOUT = 2000;
+export const IMAGE_SELECTOR = 'img';
+export const LINK_SELECTOR = 'a';

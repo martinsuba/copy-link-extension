@@ -42,6 +42,7 @@
         "code": 150
       }
     ],
+    "no-continue": "off",
     "no-param-reassign": [
       "error",
       {
