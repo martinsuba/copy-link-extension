@@ -5,6 +5,7 @@ import { SHORTCUTS, IMAGE_SELECTOR, LINK_SELECTOR } from './constants';
 import HoveredElement from './HoveredElement';
 import { injectSuccessIframe, injectFailureIframe } from './iframes';
 import Observer from './Observer';
+import logger from '../logger';
 
 const image = new HoveredElement(IMAGE_SELECTOR);
 const link = new HoveredElement(LINK_SELECTOR);
@@ -30,7 +31,7 @@ hotkeys(SHORTCUTS.COPY_WEBSITE_URL, (e) => {
     .then(() => injectSuccessIframe())
     .catch((err) => {
       injectFailureIframe();
-      console.error(err); // eslint-disable-line no-console
+      logger.error(err);
     });
   return false;
 });
@@ -43,7 +44,7 @@ hotkeys(SHORTCUTS.COPY_IMAGE_URL, (e) => {
       .then(() => injectSuccessIframe())
       .catch((err) => {
         injectFailureIframe();
-        console.error(err); // eslint-disable-line no-console
+        logger.error(err);
       });
     return false;
   }
@@ -58,7 +59,7 @@ hotkeys(SHORTCUTS.COPY_LINK_URL, (e) => {
       .then(() => injectSuccessIframe())
       .catch((err) => {
         injectFailureIframe();
-        console.error(err); // eslint-disable-line no-console
+        logger.error(err); // eslint-disable-line no-console
       });
     return false;
   }

@@ -1,6 +1,7 @@
+import logger from '../logger';
+
 export function init(): void {
-  // eslint-disable-next-line no-console
-  console.log('background script');
+  logger.debug('background script');
 }
 
 init();

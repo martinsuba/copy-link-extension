@@ -3,6 +3,9 @@
   "plugins": [
     "@typescript-eslint"
   ],
+  "globals": {
+    "PRODUCTION": "readonly",
+  },
   "extends": [
     "airbnb-base",
   ],

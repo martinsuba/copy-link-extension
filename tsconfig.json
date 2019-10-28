@@ -6,6 +6,9 @@
       "dom",
       "dom.iterable"
     ],
+    "typeRoots": [
+      "./typings",
+    ],
     "types": [
       "@types/chrome"
     ],

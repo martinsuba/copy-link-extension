@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "hotkeys-js": "^3.7.2",
-    "iframe-manager": "git+https://github.com/martinsuba/iframe-manager.git"
+    "iframe-manager": "git+https://github.com/martinsuba/iframe-manager.git",
+    "loglevel": "^1.6.4"
   }
 }

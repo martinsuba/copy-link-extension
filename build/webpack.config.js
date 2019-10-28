@@ -1,5 +1,6 @@
 const path = require('path');
 const { argv } = require('yargs');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -73,6 +74,11 @@ const baseConfig = {
     extensions: ['.ts', '.js', '.json'],
     modules: ['node_modules'],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(argv.mode === 'production'),
+    }),
+  ],
   module: {
     rules: [
       babelLoader,
@@ -105,6 +111,7 @@ const backgroundOverride = {
     filename: '[name].js',
   },
   plugins: [
+    ...baseConfig.plugins,
     new CopyWebpackPlugin([
       {
         from: './static',
@@ -121,6 +128,7 @@ const iframesOverride = {
     path: path.resolve(__dirname, '../dist/iframes/'),
   },
   plugins: [
+    ...baseConfig.plugins,
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
