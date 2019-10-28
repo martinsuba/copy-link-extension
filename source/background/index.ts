@@ -1,7 +1,7 @@
-import logger from '../logger';
+import logger from '../utils/logger';
 
-export function init(): void {
-  logger.debug('background script');
-}
+logger.debug('background script');
 
-init();
+chrome.browserAction.onClicked.addListener(() => {
+  chrome.tabs.create({ url: chrome.extension.getURL('./ui/index.html') });
+});

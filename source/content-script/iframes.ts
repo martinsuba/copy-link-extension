@@ -1,6 +1,6 @@
 import IframeManager from 'iframe-manager';
 
-import { DESTROY_IFRAME_TIMEOUT } from './constants';
+import { DESTROY_IFRAME_TIMEOUT } from '../utils/constants';
 
 const iframeManager = new IframeManager();
 

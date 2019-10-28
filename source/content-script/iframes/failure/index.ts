@@ -1,4 +1,4 @@
-import { DESTROY_IFRAME_TIMEOUT } from '../../constants';
+import { DESTROY_IFRAME_TIMEOUT } from '../../../utils/constants';
 
 import './index.scss';
 

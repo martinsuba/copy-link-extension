@@ -1,11 +1,11 @@
 import hotkeys from 'hotkeys-js';
 
 import { copyWebsiteURL, copyImageURL, copyLinkURL } from './copy-functions';
-import { SHORTCUTS, IMAGE_SELECTOR, LINK_SELECTOR } from './constants';
+import { SHORTCUTS, IMAGE_SELECTOR, LINK_SELECTOR } from '../utils/constants';
 import HoveredElement from './HoveredElement';
 import { injectSuccessIframe, injectFailureIframe } from './iframes';
 import Observer from './Observer';
-import logger from '../logger';
+import logger from '../utils/logger';
 
 const image = new HoveredElement(IMAGE_SELECTOR);
 const link = new HoveredElement(LINK_SELECTOR);

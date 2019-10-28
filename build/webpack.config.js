@@ -158,6 +158,44 @@ const iframesOverride = {
   },
 };
 
+const uiOverride = {
+  entry: {
+    index: './ui/index.ts',
+  },
+  output: {
+    path: path.resolve(__dirname, '../dist/ui/'),
+  },
+  plugins: [
+    ...baseConfig.plugins,
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new HtmlWebpackPlugin({
+      template: 'ui/index.html',
+      filename: 'index.html',
+      inject: false,
+    }),
+  ],
+  module: {
+    rules: [
+      htmlLoader,
+      babelLoader,
+      sassLoader,
+      urlLoader,
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          output: { comments: false },
+        },
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+  },
+};
+
 const contentScriptConfig = {
   ...baseConfig,
   ...contentScriptOverride,
@@ -173,8 +211,14 @@ const iframesConfig = {
   ...iframesOverride,
 };
 
+const uiConfig = {
+  ...baseConfig,
+  ...uiOverride,
+};
+
 module.exports = [
   contentScriptConfig,
   backgroundConfig,
   iframesConfig,
+  uiConfig,
 ];
