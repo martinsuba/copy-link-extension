@@ -1,11 +1,11 @@
-import hotkeys from 'hotkeys-js';
-
 import { copyWebsiteURL, copyImageURL, copyLinkURL } from './copy-functions';
-import { SHORTCUTS, IMAGE_SELECTOR, LINK_SELECTOR } from '../utils/constants';
+import { CopyEvents, IMAGE_SELECTOR, LINK_SELECTOR } from '../utils/constants';
 import HoveredElement from './HoveredElement';
 import { injectSuccessIframe, injectFailureIframe } from './iframes';
 import Observer from './Observer';
 import logger from '../utils/logger';
+
+const { COPY_WEBSITE_URL, COPY_IMAGE_URL, COPY_LINK_URL } = CopyEvents;
 
 const image = new HoveredElement(IMAGE_SELECTOR);
 const link = new HoveredElement(LINK_SELECTOR);
@@ -21,47 +21,47 @@ const observerConfig = [
   },
 ];
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const observer = new Observer(observerConfig);
 
-// copy current website url
-hotkeys(SHORTCUTS.COPY_WEBSITE_URL, (e) => {
-  e.preventDefault();
-  copyWebsiteURL()
-    .then(() => injectSuccessIframe())
-    .catch((err) => {
-      injectFailureIframe();
-      logger.error(err);
-    });
-  return false;
-});
+function success(sendResponse: (response?) => void): void {
+  injectSuccessIframe();
+  sendResponse({});
+}
 
-// copy hovered image url
-hotkeys(SHORTCUTS.COPY_IMAGE_URL, (e) => {
-  if (image.hovered !== null) {
-    e.preventDefault();
-    copyImageURL(image.hovered as HTMLImageElement)
-      .then(() => injectSuccessIframe())
-      .catch((err) => {
-        injectFailureIframe();
-        logger.error(err);
-      });
-    return false;
-  }
-  return true;
-});
+function failure(err: Error, sendResponse: (response?) => void): void {
+  injectFailureIframe();
+  logger.error(err);
+  sendResponse({ err: err.message });
+}
 
-// copy hovered link url
-hotkeys(SHORTCUTS.COPY_LINK_URL, (e) => {
-  if (link.hovered !== null) {
-    e.preventDefault();
-    copyLinkURL(link.hovered as HTMLAnchorElement)
-      .then(() => injectSuccessIframe())
-      .catch((err) => {
-        injectFailureIframe();
-        logger.error(err); // eslint-disable-line no-console
-      });
-    return false;
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  const { event } = request;
+
+  switch (event) {
+    case COPY_WEBSITE_URL:
+      copyWebsiteURL()
+        .then(() => success(sendResponse))
+        .catch((err: Error) => failure(err, sendResponse));
+      break;
+    case COPY_IMAGE_URL:
+      if (image.hovered !== null) {
+        copyImageURL(image.hovered as HTMLImageElement)
+          .then(() => success(sendResponse))
+          .catch((err: Error) => failure(err, sendResponse));
+      }
+      break;
+    case COPY_LINK_URL:
+      if (link.hovered !== null) {
+        copyLinkURL(link.hovered as HTMLAnchorElement)
+          .then(() => success(sendResponse))
+          .catch((err: Error) => failure(err, sendResponse));
+      }
+      break;
+    default:
+      sendResponse({ err: new Error('Unhandled event.') });
   }
+
+  // return true to indicate response is sent asynchronously
   return true;
 });

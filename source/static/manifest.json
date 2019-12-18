@@ -41,5 +41,25 @@
   "icons": {
     "32": "icons/icon32.png",
     "64": "icons/icon64.png"
+  },
+  "commands": {
+    "copy-website-url": {
+      "suggested_key": {
+        "default": "Alt+J"
+      },
+      "description": "Copies active tab url to clipboard"
+    },
+    "copy-image-url": {
+      "suggested_key": {
+        "default": "Alt+K"
+      },
+      "description": "Copies hovered image url to clipboard"
+    },
+    "copy-link-url": {
+      "suggested_key": {
+        "default": "Alt+L"
+      },
+      "description": "Copies hovered link url to clipboard"
+    }
   }
 }

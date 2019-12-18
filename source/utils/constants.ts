@@ -1,8 +1,8 @@
-export const SHORTCUTS = {
-  COPY_WEBSITE_URL: 'ctrl+shift+space, command+shift+space',
-  COPY_IMAGE_URL: 'ctrl+shift+x, command+shift+x',
-  COPY_LINK_URL: 'ctrl+shift+c, command+shift+c',
-};
+export enum CopyEvents {
+  COPY_WEBSITE_URL = 'copy-website-url',
+  COPY_IMAGE_URL = 'copy-image-url',
+  COPY_LINK_URL = 'copy-link-url',
+}
 
 export const DESTROY_IFRAME_TIMEOUT = 2000;
 export const IMAGE_SELECTOR = 'img';
