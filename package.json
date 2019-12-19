@@ -47,7 +47,7 @@
     "yargs": "^14.2.2"
   },
   "dependencies": {
-    "iframe-manager": "git+https://github.com/martinsuba/iframe-manager.git",
+    "iframe-manager": "^1.0.0",
     "loglevel": "^1.6.6"
   }
 }
