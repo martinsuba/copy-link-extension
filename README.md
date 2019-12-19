@@ -1,6 +1,6 @@
 # Copy Link by Shortcut Chrome extension
 
-Extension for fast copy of currently opened website url, hovered anchor href or image source link by keyboard shortcuts. There's no more need to right-click when copying image source and link address or selecting url in address bar before copying.
+Chrome extension for quick copying of currently opened website url, hovered anchor href or image source link by keyboard shortcuts. There's no more need to right-click when copying image source and link address or selecting url in address bar before copying.
 
 Once installed, simply hover over a link or an image and press keyboard shortcut copy link to the clipboard. Also could be used for copying the current website url with keyboard shortcut.
 
@@ -22,7 +22,7 @@ The history of copied links can be displayed by clicking on the extension icon i
 ## Build
 
 ```
-git clone https://github.com/martinsuba/code-injector-extension
+git clone https://github.com/martinsuba/copy-link-extension
 npm i
 npm run build
 ```

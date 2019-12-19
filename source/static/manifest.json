@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Copy Link by Shortcut",
-  "description": "Extension for fast copy of currently opened website url, hovered anchor href or image source link by keyboard shortcuts.",
+  "description": "Extension for quick copying of currently opened website url, hovered anchor href or image source link by keyboard shortcuts.",
   "version": "0.0.1",
   "background": {
     "page": "background.html",

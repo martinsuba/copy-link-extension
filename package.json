@@ -1,7 +1,7 @@
 {
   "name": "copy-link-extension",
   "version": "1.0.0",
-  "description": "Chrome extension for fast copy of currently opened website url, hovered anchor href or image source link by keyboard shortcuts.",
+  "description": "Chrome extension for quick copying of currently opened website url, hovered anchor href or image source link by keyboard shortcuts.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
