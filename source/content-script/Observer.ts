@@ -13,7 +13,7 @@ export default class Observer {
     this.init();
   }
 
-  private init() {
+  private init(): void {
     const observer = new MutationObserver(this.observerCallback.bind(this));
     observer.observe(document.documentElement, {
       childList: true,

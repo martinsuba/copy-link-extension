@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "short-copy",
-  "description": "Extension for fast web content URL copying",
+  "name": "Copy Link by Shortcut",
+  "description": "Extension for fast copy of currently opened website url, hovered anchor href or image source link by keyboard shortcuts.",
   "version": "0.0.1",
   "background": {
     "page": "background.html",
@@ -45,19 +45,19 @@
   "commands": {
     "copy-website-url": {
       "suggested_key": {
-        "default": "Alt+J"
+        "default": "Alt+A"
       },
       "description": "Copies active tab url to clipboard"
     },
     "copy-image-url": {
       "suggested_key": {
-        "default": "Alt+K"
+        "default": "Alt+S"
       },
       "description": "Copies hovered image url to clipboard"
     },
     "copy-link-url": {
       "suggested_key": {
-        "default": "Alt+L"
+        "default": "Alt+D"
       },
       "description": "Copies hovered link url to clipboard"
     }
