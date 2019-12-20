@@ -9,7 +9,7 @@ chrome.browserAction.onClicked.addListener(() => {
 chrome.commands.onCommand.addListener((event) => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, { event }, (response) => {
-      if (response.err != null) {
+      if (response?.err != null) {
         logger.error(response.err);
       } else {
         logger.debug(response);
