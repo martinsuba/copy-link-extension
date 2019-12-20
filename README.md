@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/martinsuba/copy-link-extension.svg?branch=master)](https://travis-ci.org/martinsuba/copy-link-extension)
+
 # Copy Link by Shortcut Chrome extension
 
 Chrome extension for quick copying of currently opened website url, hovered anchor href or image source link by keyboard shortcuts. There's no more need to right-click when copying image source and link address or selecting url in address bar before copying.
