@@ -4,8 +4,6 @@ const { argv } = require('yargs');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const iframes = require('./config');
@@ -150,16 +148,6 @@ const iframesOverride = {
       urlLoader,
     ],
   },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          output: { comments: false },
-        },
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
-  },
 };
 
 const uiOverride = {
@@ -186,16 +174,6 @@ const uiOverride = {
       babelLoader,
       sassLoader,
       urlLoader,
-    ],
-  },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          output: { comments: false },
-        },
-      }),
-      new OptimizeCSSAssetsPlugin({}),
     ],
   },
 };
