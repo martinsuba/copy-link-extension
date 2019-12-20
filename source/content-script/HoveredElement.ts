@@ -6,11 +6,11 @@ export default class HoveredElement {
     this.addListeners(this.getElements(selector));
   }
 
-  private getElements(selector: string): NodeList {
-    return document.querySelectorAll(selector);
+  private getElements(selector: string): Element[] {
+    return Array.from(document.querySelectorAll(selector));
   }
 
-  addListeners(elements: NodeList): void {
+  addListeners(elements: Element[]): void {
     elements.forEach((element) => element.addEventListener('mouseenter', () => {
       this.hovered = element;
     }));

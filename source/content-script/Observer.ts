@@ -1,6 +1,6 @@
 interface ObserverConfig {
   selector: string;
-  callback: (elements: NodeList) => void;
+  callback: (elements: Element[]) => void;
 }
 
 const excludeNodeNames = ['SCRIPT', 'LINK'];
@@ -18,25 +18,36 @@ export default class Observer {
     observer.observe(document.documentElement, {
       childList: true,
       subtree: true,
+      attributes: true,
     });
   }
 
   private observerCallback(mutationsList: MutationRecord[]): void {
     for (const mutation of mutationsList) {
-      const { addedNodes, removedNodes } = mutation;
+      const {
+        addedNodes, removedNodes, type, target,
+      } = mutation;
 
-      for (const addedNode of addedNodes) {
-        if (Array.from(removedNodes).includes(addedNode) || !addedNode.nodeName || excludeNodeNames.includes(addedNode.nodeName)) {
-          continue;
-        }
+      if (type === 'attributes') {
+        this.config.forEach((observerConfig) => {
+          if (target.nodeName.toLowerCase() === observerConfig.selector) {
+            observerConfig.callback([target as Element]);
+          }
+        });
+      } else {
+        for (const addedNode of addedNodes) {
+          if (Array.from(removedNodes).includes(addedNode) || !addedNode.nodeName || excludeNodeNames.includes(addedNode.nodeName)) {
+            continue;
+          }
 
-        if (addedNode instanceof Element && addedNode.childElementCount) {
-          this.config.forEach((observerConfig) => {
-            const elements = addedNode.querySelectorAll(observerConfig.selector);
-            if (elements.length) {
-              observerConfig.callback(elements);
-            }
-          });
+          if (addedNode instanceof Element && addedNode.childElementCount) {
+            this.config.forEach((observerConfig) => {
+              const elements = Array.from(addedNode.querySelectorAll(observerConfig.selector));
+              if (elements.length) {
+                observerConfig.callback(elements);
+              }
+            });
+          }
         }
       }
     }
