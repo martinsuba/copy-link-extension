@@ -1,31 +1,12 @@
+import { syncStorage } from 'extension-storage-promise';
 import { STORAGE_NAME } from './constants';
 
-export function loadHistory(): Promise<string[]> {
-  return new Promise<string[]>((resolve, reject) => {
-    try {
-      chrome.storage.sync.get(STORAGE_NAME, ({ [STORAGE_NAME]: state }: { [STORAGE_NAME]: string[] }) => {
-        if (state == null) {
-          resolve([]);
-        } else {
-          resolve(state);
-        }
-      });
-    } catch (err) {
-      reject(err);
-    }
-  });
+export async function loadHistory(): Promise<string[]> {
+  return syncStorage.getOneRecord(STORAGE_NAME) as Promise<string[]>;
 }
 
 function saveHistory(state: string[]): Promise<void> {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      chrome.storage.sync.set({ [STORAGE_NAME]: state }, () => {
-        resolve();
-      });
-    } catch (err) {
-      reject(err);
-    }
-  });
+  return syncStorage.setOneRecord(STORAGE_NAME, state);
 }
 
 export async function addToHistory(entry: string): Promise<void> {

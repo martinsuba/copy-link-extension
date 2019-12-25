@@ -7,9 +7,11 @@ const listElement = document.querySelector('.history-list');
 
 function appendItemsToList(list: Element, items: string[]): void {
   let listItems = '';
-  items.forEach((item) => {
-    listItems += `<li><a href="${item}" target="_blank">${item}</a></li>`;
-  });
+  items
+    .reverse()
+    .forEach((item) => {
+      listItems += `<li><a href="${item}" target="_blank">${item}</a></li>`;
+    });
   list.innerHTML = listItems;
 }
 
